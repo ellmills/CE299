@@ -1,0 +1,14 @@
+set tcl_precision 17
+
+#
+# Import the ParFlow TCL package
+#
+lappend auto_path $env(PARFLOW_DIR)/bin
+package require parflow
+namespace import Parflow::*
+
+set filename [lindex $argv 0]
+set filecore [string trimright $filename .pfb]
+
+set var [pfload -pfb $filename]
+pfsave $var -sa $filecore.ascii
